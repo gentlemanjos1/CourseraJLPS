@@ -1,0 +1,26 @@
+section,article
+{
+	color:green;
+	font-size: 20px;
+}
+h1
+{
+	color: yellow;
+	font-size: 30px;
+	text-align: center;
+}
+img
+{
+	display: block;
+  	margin-left: auto;
+ 	margin-right: auto;  	
+}
+footer
+{
+	text-align: center;
+	background-color: blue;
+}
+#seccion1, .mercado
+{	
+	background-color: orange;
+}
