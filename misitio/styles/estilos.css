@@ -28,3 +28,27 @@ footer
 {	
 	background-color: orange;
 }
+a:link,a:visited
+{
+	text-decoration: none;
+	background-color: green;
+	border; 1px solid blue;
+	color: lightblue;
+	display: block;
+	text-align: center;
+	margin-bottom: 1px;
+}
+a:hover,a:active
+{
+	background-color: red;
+	color: purple;
+}
+#seccion2 li:nth-child(3)
+{
+	font-size: 15px;
+}
+#seccion1 li:nth-child(even)
+{
+	background-color: gray;
+	cursor: pointer;
+}
