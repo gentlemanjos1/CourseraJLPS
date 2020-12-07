@@ -1,7 +1,11 @@
-section,article
+section > article
 {
-	color:green;
+	color: red;
 	font-size: 20px;
+}
+section li
+{
+	color: brown;
 }
 h1
 {
