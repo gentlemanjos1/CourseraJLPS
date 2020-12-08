@@ -21,6 +21,15 @@ h1
 	text-align: center;
 	margin-top: 50px;
 }
+h2,h3,h4,h5,h6
+{
+	float:left;
+	margin-right: 10px;
+}
+h5,h5
+{
+	clear:both;
+}
 img
 {
 	display: block;
@@ -50,6 +59,14 @@ a:hover,a:active
 {
 	background-color: red;
 	color: purple;
+}
+#floatdiv
+{
+	background-color: #ffffff;	
+}
+#floatsection
+{	
+	clear:left;
 }
 #seccion2 li:nth-child(3)
 {
