@@ -1,8 +1,9 @@
 body
-{
-	margin:0;
-	padding:0;
-	background-color:#ff6633;
+{	
+	background-image: url(img/Poseidon.gif);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+    margin:0;
 }
 section > article
 {
@@ -60,8 +61,8 @@ a:hover,a:active
 	cursor: pointer;
 }
 #box
-{
-	background-color: black;
+{	
+	background-color: black; 
 	padding: 10px 10px 10px 10px;
 	border: 5px solid gold;
 	margin: 40px;
