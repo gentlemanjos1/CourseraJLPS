@@ -48,7 +48,7 @@ body
 	position:relative;
 	margin-top: 5%;	
 }
-.contenedorEnlaces
+.contenedor
 {	
 	margin: 0;
   	position: absolute;
@@ -63,6 +63,36 @@ body
 	max-height: auto;	
 	padding: 15px;	  	
 }
+#piepagina
+{
+	position:relative;	
+	margin-top:10%;
+}
+#myfooter
+{		
+  	display: flex;  	
+	justify-content: center;
+	align-items: center;	
+	border: 3px solid green;		
+}
+#left
+{
+	text-align:left;
+	float:left;
+	padding-right:30%;
+		
+}
+#center
+{
+	text-align:center;		
+}
+#right
+{
+	text-align:right;
+	float:right;	
+	padding-left:30%;
+}
+
 @media screen and (max-width: 500px) {
   .topnav a {
     float: none;
