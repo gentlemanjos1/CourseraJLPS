@@ -1,0 +1,12 @@
+.portada
+{
+	width: 25%;
+	border: 10px solid black;
+}
+
+.foto_galeria
+{
+	width:95%;	
+	height: auto;
+	border: 10px solid black;
+}
