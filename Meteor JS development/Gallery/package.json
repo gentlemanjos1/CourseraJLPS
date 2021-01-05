@@ -1,5 +1,5 @@
 {
-  "name": "galeriaimagenes",
+  "name": "Gallery",
   "private": true,
   "scripts": {
     "start": "meteor run",

@@ -1,0 +1,43 @@
+<head>
+  <title>Gallery</title>
+</head>
+
+<body>
+  {{> adicionarImagen}}
+  <h1>Bienvenidos a mi galería</h1>
+  <div class="container">
+    {{> imagenes}}
+  </div>  
+</body>
+
+<template name="adicionarImagen">
+  <form class="js-add-img">
+    <input type="text" name="img_src"><br>
+    <input type="text" name="img_alt">
+    <button class="btn btn-success">Adicionar</button>
+  </form>
+</template>
+
+<template name="imagenes">
+  <div class="row">
+    {{#each imagenes}}  
+    <div class="col-xs-12 col-md-6 col-lg-4" id="{{_id}}">
+      <div class="thumbnail">
+        <img class="js-imagen" src="{{img_src}}" alt="{{img_alt}}">
+        <div class="caption">
+          <h5>Rating:{{rating}}</h5>
+          <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+          <p>
+            {{> starsRating mutable=true id=_id class='js-rate-img'}}
+          </p>
+
+          <button class="js-del-img btn btn-warning">Borrar</button>          
+        </div>        
+      </div>      
+    </div>  
+    {{/each}}
+  </div>
+</template>
+
+

@@ -1,0 +1,13 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+.thumbnail
+{
+	min-height:400px;
+	max-height:400px;  
+}
+.js-imagen
+{
+	width: 50%;	
+}

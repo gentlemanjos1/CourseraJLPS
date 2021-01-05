@@ -1,0 +1,15 @@
+if(Meteor.isServer)
+{
+	Meteor.startup(function()
+	{
+		if(Imagenes.find().count()==0)
+	  	{
+	  		Imagenes.insert(
+			  	{
+			  		img_src:"pavehawk.jpg",
+					img_alt:"Helicóptero"
+			  	}
+	  		);
+	  	}
+	});
+}
