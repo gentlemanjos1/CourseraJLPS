@@ -4,29 +4,54 @@
 
 <body>
   {{> adicionarImagen}}
-  <h1>Bienvenidos a mi galería</h1>
+
+  <nav class="navbar navbar-fixed-top navbar-light bg-light">
+    <div class="container">
+      {{> loginButtons}}
+    </div>                
+  </nav>
+
   <div class="container">
-    {{> imagenes}}
-  </div>  
+    <h1>Bienvenidos a mi galería {{usuario}}!</h1>
+    {{> imagenes}}    
+  </div>
 </body>
 
 <template name="adicionarImagen">
-  <form class="js-add-img">
-    <input type="text" name="img_src"><br>
-    <input type="text" name="img_alt">
-    <button class="btn btn-success">Adicionar</button>
-  </form>
+  <div class="modal fade" tabindex="-1" id="modalImagen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h5 class="modal-title">Insertar nueva Imagen</h5>                
+        </div>
+        <div class="modal-body">
+          <form class="js-add-img">
+            <input type="text" name="img_src"><br>
+            <input type="text" name="img_alt">
+            <button class="btn btn-success">Adicionar</button>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning btn-close" data-bs-dismiss="modal">Cancelar</button>          
+        </div>
+      </div>
+    </div>
+  </div>  
 </template>
 
 <template name="imagenes">
+  {{#if currentUser}}
+    <button id="agregar" class="js-img-form btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen">Agregar Imagen</button>
+  {{/if}}
   <div class="row">
     {{#each imagenes}}  
-    <div class="col-xs-12 col-md-6 col-lg-4" id="{{_id}}">
+    <div class="col-xs-12 col-md-6 col-lg-3" id="{{_id}}">
       <div class="thumbnail">
         <img class="js-imagen" src="{{img_src}}" alt="{{img_alt}}">
         <div class="caption">
           <h5>Rating:{{rating}}</h5>
-          <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p>{{img_alt}}</p>
+          <p>Usuario:{{getUser creadoPor}}</p>
 
           <p>
             {{> starsRating mutable=true id=_id class='js-rate-img'}}
@@ -39,5 +64,3 @@
     {{/each}}
   </div>
 </template>
-
-
