@@ -65,6 +65,25 @@ if(Meteor.isClient)
 	];	*/
 
 	/*Template.imagenes.helpers({imagenes:image_data});*/
+	Session.set("limite",2);
+
+	lastScrollTop=0;
+	$(window).scroll(function(event)
+	{
+		// alúa si estamos cerca al tope inferior de la pantalla.
+		if($(window).scrollTop()+$(window).height() > $(document).height()-100)
+		{
+			// Nuestra ubicación en la página.
+			var scrollTop=$(this).scrollTop();
+			if(scrollTop>lastScrollTop)
+			{
+				// En caso positivo
+				Session.set("limite",Session.get("limite")+4);				
+			}
+			lastScrollTop=scrollTop;
+		}
+		
+	})
 
 	Accounts.ui.config({
 		passwordSignupFields: 'USERNAME_AND_EMAIL'
@@ -86,7 +105,41 @@ if(Meteor.isClient)
 
 	Template.imagenes.helpers(
 		{
-			imagenes:Imagenes.find({},{sort:{fecha_creacion:-1, rating:-1}}),
+			imagenes:function()
+			{
+				if(Session.get("userFilter"))
+				{
+					return Imagenes.find({creadoPor:Session.get("userFilter")},{sort:{fecha_creacion:-1, rating:-1}});
+				}
+				else
+				{
+					return Imagenes.find({},{sort:{fecha_creacion:-1, rating:-1}, limit:Session.get("limite")});
+				}
+				
+			},
+			filtro_imagenes:function()
+			{
+				if(Session.get("userFilter"))
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			},
+			filtroUsuario:function()
+			{
+				if(Session.get("userFilter"))
+				{
+					var usuario=Meteor.users.findOne({ _id:Session.get("userFilter")});
+					return usuario.username;
+				}
+				else
+				{
+					return false;
+				}
+			},
 			getUser:function(idUsuario)
 			{
 				var usuario=Meteor.users.findOne({ _id:idUsuario});
@@ -116,7 +169,7 @@ if(Meteor.isClient)
 				{
 					Imagenes.remove({"_id":imagen_id});
 				}
-			);			I
+			);			
 		},
 		'click .js-rate-img':function(event)
 		{
@@ -130,7 +183,15 @@ if(Meteor.isClient)
 		'click .js-img-form':function(event)
 		{								
 			$("#modalImagen").modal("show");
-		}		
+		},
+		'click .js-filtro-imagen':function(event)
+		{								
+			Session.set("userFilter", this.creadoPor);
+		},
+		'click .js-remover-filtro':function(event)
+		{								
+			Session.set("userFilter", undefined);
+		}
 	});	
 
 	Template.adicionarImagen.events({

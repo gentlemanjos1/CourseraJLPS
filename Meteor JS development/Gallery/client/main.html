@@ -43,6 +43,12 @@
   {{#if currentUser}}
     <button id="agregar" class="js-img-form btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen">Agregar Imagen</button>
   {{/if}}
+  <h2>
+    {{#if filtro_imagenes}}
+      Imágenes de usuario: {{filtroUsuario}}. <a href="#" class="js-remover-filtro">Mostrar todas las imágenes</a>
+    {{/if}}
+  </h2>  
+
   <div class="row">
     {{#each imagenes}}  
     <div class="col-xs-12 col-md-6 col-lg-3" id="{{_id}}">
@@ -51,7 +57,10 @@
         <div class="caption">
           <h5>Rating:{{rating}}</h5>
           <p>{{img_alt}}</p>
-          <p>Usuario:{{getUser creadoPor}}</p>
+          <p>            
+            Usuario:
+            <a href="#" class="js-filtro-imagen">{{getUser creadoPor}}</a>
+          </p>
 
           <p>
             {{> starsRating mutable=true id=_id class='js-rate-img'}}
