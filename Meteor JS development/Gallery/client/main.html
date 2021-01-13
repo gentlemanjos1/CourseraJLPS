@@ -3,19 +3,30 @@
 </head>
 
 <body>
-  {{> adicionarImagen}}
 
+</body>
+
+<template name="ApplicationLayout">
+  {{> yield "navbar"}}
+  {{> yield "main"}}
+</template>
+
+<template name="navbar">
   <nav class="navbar navbar-fixed-top navbar-light bg-light">
     <div class="container">
       {{> loginButtons}}
     </div>                
   </nav>
+</template>
 
+<template name="Bienvenida">
   <div class="container">
-    <h1>Bienvenidos a mi galería {{usuario}}!</h1>
-    {{> imagenes}}    
-  </div>
-</body>
+    <div class="jumbotron jumbotron-fluid">
+      <h1>Bienvenidos a mi galería {{usuario}}!</h1>
+      <a href="/imagenes" class="btn btn-info">Entrar</a>
+    </div>
+  </div>    
+</template>
 
 <template name="adicionarImagen">
   <div class="modal fade" tabindex="-1" id="modalImagen">
@@ -39,37 +50,46 @@
   </div>  
 </template>
 
+<template name="imagen">
+  <div class="container">
+    <h2>{{img_alt}}</h2>
+    <a href="/imagenes"><img src="/{{img_src}}" class="imagen-sola"></a>
+  </div>    
+</template>
+
 <template name="imagenes">
-  {{#if currentUser}}
-    <button id="agregar" class="js-img-form btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen">Agregar Imagen</button>
-  {{/if}}
-  <h2>
-    {{#if filtro_imagenes}}
-      Imágenes de usuario: {{filtroUsuario}}. <a href="#" class="js-remover-filtro">Mostrar todas las imágenes</a>
+  <div class="container">
+    {{#if currentUser}}
+      <button id="agregar" class="js-img-form btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen">Agregar Imagen</button>
     {{/if}}
-  </h2>  
+    <h2>
+      {{#if filtro_imagenes}}
+        Imágenes de usuario: {{filtroUsuario}}. <a href="#" class="js-remover-filtro">Mostrar todas las imágenes</a>
+      {{/if}}
+    </h2>  
 
-  <div class="row">
-    {{#each imagenes}}  
-    <div class="col-xs-12 col-md-6 col-lg-3" id="{{_id}}">
-      <div class="thumbnail">
-        <img class="js-imagen" src="{{img_src}}" alt="{{img_alt}}">
-        <div class="caption">
-          <h5>Rating:{{rating}}</h5>
-          <p>{{img_alt}}</p>
-          <p>            
-            Usuario:
-            <a href="#" class="js-filtro-imagen">{{getUser creadoPor}}</a>
-          </p>
+    <div class="row">
+      {{#each imagenes}}  
+      <div class="col-xs-12 col-md-6 col-lg-3" id="{{_id}}">
+        <div class="thumbnail">
+          <a href="/imagen/{{_id}}"><img class="js-imagen" src="{{img_src}}" alt="{{img_alt}}"></a>         
+          <div class="caption">
+            <h5>Rating:{{rating}}</h5>
+            <p>{{img_alt}}</p>
+            <p>            
+              Usuario:
+              <a href="#" class="js-filtro-imagen">{{getUser creadoPor}}</a>
+            </p>
 
-          <p>
-            {{> starsRating mutable=true id=_id class='js-rate-img'}}
-          </p>
+            <p>
+              {{> starsRating mutable=true id=_id class='js-rate-img'}}
+            </p>
 
-          <button class="js-del-img btn btn-warning">Borrar</button>          
-        </div>        
-      </div>      
-    </div>  
-    {{/each}}
-  </div>
+            <button class="js-del-img btn btn-warning">Borrar</button>          
+          </div>        
+        </div>      
+      </div>  
+      {{/each}}
+    </div>
+  </div>  
 </template>

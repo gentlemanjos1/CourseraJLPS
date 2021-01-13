@@ -1,4 +1,5 @@
-body {
+body
+{
   padding: 10px;
   font-family: sans-serif;
 }
@@ -11,4 +12,8 @@ body {
 .js-imagen
 {
 	max-height: 200px;	
+}
+.imagen-sola
+{
+	max-width: 100%
 }

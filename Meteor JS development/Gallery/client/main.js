@@ -65,8 +65,52 @@ if(Meteor.isClient)
 	];	*/
 
 	/*Template.imagenes.helpers({imagenes:image_data});*/
-	Session.set("limite",2);
 
+	// Enrutamiento.
+	Router.configure(
+	{
+		layoutTemplate:"ApplicationLayout"
+	});
+
+	Router.route('/', function ()
+	{
+	  this.render("Bienvenida",
+	  	{
+	  		to:"main"
+	  	}); 		
+		
+	});
+
+	Router.route('/imagenes', function ()
+	{
+	  this.render("navbar",
+	  	{
+	  		to:"navbar"
+	  	});
+	  	this.render("imagenes",
+	  	{
+	  		to:"main"
+	  	});	
+	});
+
+	Router.route('/imagen/:_id', function ()
+	{
+	  this.render("navbar",
+	  	{
+	  		to:"navbar"
+	  	});
+	  	this.render("imagen",
+	  	{
+	  		to:"main",
+	  		data:function()
+	  		{
+	  			return Imagenes.findOne({ _id:this.params._id});
+	  		}
+	  	});	
+	});
+
+	//Scroll infinito
+	Session.set("limite",4);
 	lastScrollTop=0;
 	$(window).scroll(function(event)
 	{
@@ -83,8 +127,9 @@ if(Meteor.isClient)
 			lastScrollTop=scrollTop;
 		}
 		
-	})
+	});
 
+	//Configuración de cuenta de usuario.
 	Accounts.ui.config({
 		passwordSignupFields: 'USERNAME_AND_EMAIL'
 	});
